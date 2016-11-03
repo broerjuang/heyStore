@@ -12,17 +12,29 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 
+const session = require('express-session');
+
 // Initiate Express
 const app = express()
 const router = express.Router()
 
+//passport
+const passport = require('passport')
+
+//users local
+const User = require('./models/model.users')
+
 // Data and modeling
 const mongoose = require('mongoose')
+
+//local strategy
+const LocalStrategy   = require('passport-local').Strategy;
 
 // -----------------------------------------------------------------------------
 // APP MODULES
 // -----------------------------------------------------------------------------
 
+const userApi = require('./routes/router.users');
 //const apiBooks = require('./routes/api.books')
 
 // -----------------------------------------------------------------------------
@@ -36,13 +48,30 @@ app.use(cors())
 
 // MONGODB
 mongoose.Promise = global.Promise // native Node.js promise
+console.log(process.env.MONGODB_URI);
 mongoose.connect(process.env.MONGODB_URI)
 
 // -----------------------------------------------------------------------------
 // REGISTER ROUTES
 // -----------------------------------------------------------------------------
 
-//app.use('/api', apiBooks)
+app.use('/api', userApi)
+
+app.use(session({
+  secret : 'whatever',
+  resave : false,
+  saveUninitialized : false,
+  cookie : {
+    maxAge : 10000000
+  }
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
+
+
+passport.use(new LocalStrategy(User.authenticate()));
+
 
 // -----------------------------------------------------------------------------
 // RUN THE APP
