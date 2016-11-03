@@ -2,6 +2,7 @@
 const mongoose = require("mongoose");
 
 var commentSchema = new mongoose.Schema({
+    title : String,
     text: String,
     account: {
       id: {

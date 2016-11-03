@@ -4,7 +4,7 @@ const albumSchema = new mongoose.Schema({
    title: String,
    image: String,
    description: String,
-   accountOwner: {
+   account: {
     id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
@@ -15,6 +15,7 @@ const albumSchema = new mongoose.Schema({
          ref: "Comment"
       }
    ]
-});
+ }
+})
 
 module.exports = mongoose.model("Album", albumSchema);

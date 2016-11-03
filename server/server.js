@@ -35,12 +35,13 @@ const LocalStrategy   = require('passport-local').Strategy;
 // -----------------------------------------------------------------------------
 
 const userApi = require('./routes/router.users');
-//const apiBooks = require('./routes/api.books')
+const comment = require('./routes/router.comments')
+const album = require('./routes/router.albums')
 
 // -----------------------------------------------------------------------------
 // APP CONFIGURATION
 // -----------------------------------------------------------------------------
-
+passport.use(new LocalStrategy(User.authenticate()));
 // EXPRESS
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
@@ -55,7 +56,6 @@ mongoose.connect(process.env.MONGODB_URI)
 // REGISTER ROUTES
 // -----------------------------------------------------------------------------
 
-app.use('/api', userApi)
 
 app.use(session({
   secret : 'whatever',
@@ -69,9 +69,9 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
-
-passport.use(new LocalStrategy(User.authenticate()));
-
+app.use('/api', userApi)
+app.use('/api', comment)
+app.use('/api', album)
 
 // -----------------------------------------------------------------------------
 // RUN THE APP
