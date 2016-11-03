@@ -23,7 +23,7 @@ const mongoose = require('mongoose')
 // APP MODULES
 // -----------------------------------------------------------------------------
 
-const apiBooks = require('./routes/api.books')
+//const apiBooks = require('./routes/api.books')
 
 // -----------------------------------------------------------------------------
 // APP CONFIGURATION
@@ -42,7 +42,7 @@ mongoose.connect(process.env.MONGODB_URI)
 // REGISTER ROUTES
 // -----------------------------------------------------------------------------
 
-app.use('/api', apiBooks)
+//app.use('/api', apiBooks)
 
 // -----------------------------------------------------------------------------
 // RUN THE APP
