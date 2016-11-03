@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-//const controller = require('../controllers/api.books')
+const controller = require('../controllers/controller.users.js')
 //const books = require('../data/books.js')
 
 // -----------------------------------------------------------------------------
@@ -12,11 +12,10 @@ const router = express.Router()
 // req.params >>> /data/:id
 // req.query  >>> /data?q={id}
 
-// router.get('/ping', controller.ping)
-// router.get('/books', controller.getBooks)
-// router.post('/books', controller.postBook)
-// router.get('/books/:isbn', controller.getBookByISBN)
-// router.delete('/books/:isbn', controller.deleteBookByISBN)
-// router.put('/books/:isbn', controller.updateBookByISBN)
+router.get('/user', controller.list)
+router.get('/user/:userName', controller.find)
+router.post('/user', controller.create)
+router.delete('/user/:userName', controller.delete)
+router.put('/user/:userName', controller.update)
 
 module.exports = router
