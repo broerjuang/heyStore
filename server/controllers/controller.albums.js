@@ -21,5 +21,42 @@ module.exports = {
         res.json(new_album)
       }
     })
+  },
+
+  update: (req, res) => {
+    Album.findOneAndUpdate({
+      _id : req.params.id
+    },{
+      title       : req.body.title,
+      image       : req.body.image,
+      description : req.body.description
+    }, {
+      new : true
+    }, (err, album) => {
+      err ? res.json(err) : res.json(album)
+    })
+  },
+
+  delete: (req, res) => {
+    Album.findOneAndRemove({
+      _id : req.params.id
+    }, (err, data) => {
+      err ? res.json(err) : res.json(data)
+    })
+  },
+
+  list: (req, res) => {
+    Album.find({}, (err, data) => {
+      err ? res.json(err) : res.json(data)
+    })
+  },
+
+  find: (req, res) => {
+    Album.findOne({
+      _id : req.params.id
+    }, (err, album) => {
+      err? res.json(err) : res.json(album)
+    })
   }
+
 }
