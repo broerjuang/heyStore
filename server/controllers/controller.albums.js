@@ -55,6 +55,20 @@ module.exports = {
     Album.findOne({
       _id : req.params.id
     }, (err, album) => {
+      // console.log(album.account.comments[0]);
+
+      //==============================
+      // ini buat liat list comment di 1 album tertentu
+      let result_comment = []
+      for (var i = 0; i < album.account.comments.length; i++) {
+        Comment.find({
+          _id: album.account.comments[i]
+        }, (err, comment_in_this_album) => {
+          console.log(comment_in_this_album);
+          result_comment.push(comment_in_this_album)
+        })
+      }
+      //==============================
       err? res.json(err) : res.json(album)
     })
   }

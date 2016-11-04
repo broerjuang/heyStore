@@ -78,7 +78,7 @@ app.use('/api', album)
 // -----------------------------------------------------------------------------
 
 const host = process.env.HOST || "localhost"
-const port = process.env.PORT || "3000"
+const port = process.env.PORT
 
 app.listen(port, host, (err) => {
   if (err) console.log(err)

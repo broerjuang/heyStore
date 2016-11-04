@@ -11,5 +11,6 @@ const controller = require('../controllers/controller.comments.js')
 router.post('/comment/:id',  controller.create)
 router.post('/comment/:id', controller.update)
 router.delete('/comment/:id', controller.delete)
+router.get('/comment', controller.list)
 
 module.exports = router
