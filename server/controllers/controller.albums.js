@@ -11,7 +11,7 @@ module.exports = {
       image : req.body.image,
       description : req.body.description,
       account : {
-        id : '581b5c6f1c06a74cd40da500'
+        id : '581c320969ec315e11efb8e7'
       }
     }, (err, new_album) => {
       if(err){

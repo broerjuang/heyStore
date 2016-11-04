@@ -8,7 +8,7 @@ const controller = require('../controllers/controller.comments.js')
 // ROUTING
 // -----------------------------------------------------------------------------
 
-router.post('/comment',  controller.create)
+router.post('/comment/:id',  controller.create)
 router.post('/comment/:id', controller.update)
 router.delete('/comment/:id', controller.delete)
 
